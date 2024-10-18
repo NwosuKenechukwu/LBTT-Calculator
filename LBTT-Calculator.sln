@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LBTT Calculator", "LBTT Calculator\LBTT Calculator.csproj", "{43CDA1D1-04A9-4BEE-B571-FA9A5F761DA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_LBTT_Calculator", "Test_LBTT_Calculator\Test_LBTT_Calculator.csproj", "{9D6869BD-3C57-427A-A3D8-F38FC5BE0DD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43CDA1D1-04A9-4BEE-B571-FA9A5F761DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CDA1D1-04A9-4BEE-B571-FA9A5F761DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CDA1D1-04A9-4BEE-B571-FA9A5F761DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CDA1D1-04A9-4BEE-B571-FA9A5F761DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D6869BD-3C57-427A-A3D8-F38FC5BE0DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D6869BD-3C57-427A-A3D8-F38FC5BE0DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D6869BD-3C57-427A-A3D8-F38FC5BE0DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D6869BD-3C57-427A-A3D8-F38FC5BE0DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {672046BD-764F-497D-A8E1-96A61A111DBB}
+	EndGlobalSection
+EndGlobal
