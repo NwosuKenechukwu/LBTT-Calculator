@@ -1,4 +1,5 @@
 ﻿using LBTT_Calculator.Tax_Bands;
+using LBTT_Calculator.TaxBand;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +8,21 @@ using System.Threading.Tasks;
 
 namespace LBTT_Calculator.Calculator
 {
-    public class LBTTCalculator
+    public class HouseTaxCalculator
     {
         private double _totalTax;
         private double _housePrice;
-        private List<ITaxRate> _taxBands = new List<ITaxRate>
-        {
-            new BoundedTaxRate(0.02, 145000, 250000),
-            new BoundedTaxRate(0.05, 250000, 325000),
-            new BoundedTaxRate(0.10, 325000, 750000),
-            new UnboundedTaxRate(0.12, 750000),
-        };
+        private ITaxBandList _taxBandList;
 
-        public LBTTCalculator(double housePrice)
+        public HouseTaxCalculator(double housePrice, ITaxBandList taxBandList)
         {
             _housePrice = housePrice;
+            _taxBandList = taxBandList;
         }
 
         public double calculateLbtt()
         {
-            foreach (ITaxRate band in _taxBands) {
+            foreach (ITaxRate band in _taxBandList.bands) {
                 _totalTax += band.CalculateCurrentBandTax(_housePrice);
             }
 

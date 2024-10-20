@@ -1,4 +1,5 @@
 ﻿using LBTT_Calculator.Calculator;
+using LBTT_Calculator.TaxBand;
 
 namespace LBTT_Calculator;
 
@@ -11,7 +12,8 @@ public class Application
 
     void Run()
     {
-        LBTTCalculator calculator = new LBTTCalculator(875000);
+        ITaxBandList taxBandList = new LBTTNonResidentialTaxBandList();
+        HouseTaxCalculator calculator = new HouseTaxCalculator(465000, taxBandList);
         string totalTax = calculator.calculateLbtt().ToString("n2");
 
         Console.WriteLine(totalTax);

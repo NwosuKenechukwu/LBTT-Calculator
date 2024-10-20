@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Calculator\" />
-    <Folder Include="Tax Bands\" />
+    <Folder Include="Tax Rates\" />
   </ItemGroup>
 
 </Project>

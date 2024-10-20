@@ -1,30 +1,42 @@
 using LBTT_Calculator.Calculator;
 using LBTT_Calculator.Tax_Bands;
+using LBTT_Calculator.TaxBand;
 using NUnit.Framework;
 
 namespace Test_LBTT_Calculator
 {
     public class LbttCalculatorTests
     {
-        private LBTTCalculator _lbttCalculator { get; set; } = null;
+        private HouseTaxCalculator _residentialLbttCalculator { get; set; }
+        private HouseTaxCalculator _nonResidentialLbttCalculator { get; set; }
 
-        double housePrice = 875000;
+        double residentialHousePrice = 875000;
+        double nonResidentialHousePrice = 465000;
 
-        private ITaxRate _unboundedTaxRate;
-        private ITaxRate _boundedTaxRate;
 
         [SetUp]
         public void Setup()
         {
-            _lbttCalculator = new LBTTCalculator(housePrice);
+            _residentialLbttCalculator = new HouseTaxCalculator(residentialHousePrice, new LBTTResidentialTaxBandList());
+            _nonResidentialLbttCalculator = new HouseTaxCalculator(nonResidentialHousePrice, new LBTTNonResidentialTaxBandList());
         }
 
         [Test]
-        public void TestCalculateLbtt()
+        public void TestCalculateResidentialLbtt()
         {
             double expected = 63350;
 
-            double lbttTax = _lbttCalculator.calculateLbtt();
+            double lbttTax = _residentialLbttCalculator.calculateLbtt();
+
+            Assert.That(lbttTax, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestCalculateNonResidentialLbtt()
+        {
+            double expected = 11750;
+
+            double lbttTax = _nonResidentialLbttCalculator.calculateLbtt();
 
             Assert.That(lbttTax, Is.EqualTo(expected));
         }
@@ -34,9 +46,9 @@ namespace Test_LBTT_Calculator
         [TestCase(0.10, 325000, 750000, 42500)]
         public void TestBoundedTaxRate(double taxRate, double lowerBand, double higherBand, double expected)
         {
-            _boundedTaxRate = new BoundedTaxRate(taxRate, lowerBand, higherBand);
+            ITaxRate _boundedTaxRate = new BoundedTaxRate(taxRate, lowerBand, higherBand);
 
-            double lbttTax = _boundedTaxRate.CalculateCurrentBandTax(housePrice);
+            double lbttTax = _boundedTaxRate.CalculateCurrentBandTax(residentialHousePrice);
 
             Assert.That(lbttTax, Is.EqualTo(expected));
         }
@@ -44,9 +56,9 @@ namespace Test_LBTT_Calculator
         [TestCase(0.12, 750000, 15000)]
         public void TestUnboundedTaxRate(double TaxRate, double lowerBand, double expected)
         {
-            _unboundedTaxRate = new UnboundedTaxRate(TaxRate, lowerBand);
+            ITaxRate _unboundedTaxRate = new UnboundedTaxRate(TaxRate, lowerBand);
 
-            double lbttTax = _unboundedTaxRate.CalculateCurrentBandTax(housePrice);
+            double lbttTax = _unboundedTaxRate.CalculateCurrentBandTax(residentialHousePrice);
 
             Assert.That(lbttTax, Is.EqualTo(expected));
         }
